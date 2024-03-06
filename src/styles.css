@@ -1,0 +1,25 @@
+body {
+  --titlebar-height: 30px;
+  --titlebar-color: #1e1e1e;
+  --titlebar-bg: #f8f8f8;
+  --titlebar-hover-bg: #d7d7d7;
+}
+
+body[arco-theme="dark"] {
+  --titlebar-height: 30px;
+  --titlebar-color: #9d9d9d;
+  --titlebar-bg: #181818;
+  --titlebar-hover-bg: #3d3d3d;
+}
+
+html,
+body,
+#app {
+  height: calc(100% - var(--titlebar-height));
+  margin: 0;
+  padding: 0;
+}
+
+body[arco-theme="dark"] {
+  background: #1f1f1f;
+}
