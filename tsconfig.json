@@ -14,7 +14,7 @@
       "~/*": ["src/*"]
     },
     "resolveJsonModule": true,
-    "types": ["vite/client", "unplugin-vue-router/client"],
+    "types": ["vite/client", "vite-plugin-vue-layouts/client", "unplugin-vue-router/client"],
     "allowImportingTsExtensions": true,
     /* Linting */
     "strict": true,

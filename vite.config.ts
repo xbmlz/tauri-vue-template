@@ -8,6 +8,7 @@ import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 import VueRouter from 'unplugin-vue-router/vite'
 import { vitePluginForArco } from '@arco-plugins/vite-vue'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
+import Layouts from 'vite-plugin-vue-layouts'
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
@@ -21,6 +22,9 @@ export default defineConfig(async () => ({
 
     // https://github.com/posva/unplugin-vue-router
     VueRouter(),
+
+    // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
+    Layouts(),
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
