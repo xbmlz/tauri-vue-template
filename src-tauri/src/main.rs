@@ -7,6 +7,7 @@
 use futures_util::{SinkExt, StreamExt};
 use log::info;
 use tauri::Manager;
+use tauri_plugin_sql::{Migration, MigrationKind};
 use tokio::net::{TcpListener, TcpStream};
 use tokio_tungstenite::{accept_async, tungstenite::Result};
 use window_shadows::set_shadow;
@@ -55,6 +56,7 @@ fn main() {
 
     tauri::async_runtime::spawn(start_server());
 
+
     // run tauri
     tauri::Builder::default()
         .setup(|app| {
@@ -62,6 +64,17 @@ fn main() {
             set_shadow(&window, true).expect("Unsupported platform!");
             Ok(())
         })
+        .plugin(tauri_plugin_sql::Builder::default()
+        .add_migrations("sqlite:database.db", vec![
+            // Define your migrations here
+            Migration {
+                version: 1,
+                description: "create_initial_tables",
+                sql: "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT);",
+                kind: MigrationKind::Up,
+            }
+        ])
+        .build())
         .invoke_handler(tauri::generate_handler![greet])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

@@ -21,6 +21,7 @@ env_logger = "0.11.3"
 tokio-tungstenite = "0.21.0"
 tokio = { version = "1.36.0", features = ["net"] }
 tauri-plugin-websocket = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1" }
+tauri-plugin-sql = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v1", features = ["sqlite"] }
 
 [features]
 # This feature is used for production builds or when a dev server is not specified, DO NOT REMOVE!!
