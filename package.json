@@ -19,6 +19,7 @@
     "@antfu/eslint-config": "^2.8.0",
     "@arco-design/web-vue": "^2.54.6",
     "@arco-plugins/vite-vue": "^1.4.5",
+    "@iconify-json/carbon": "^1.1.31",
     "@iconify-json/mdi": "^1.1.64",
     "@tauri-apps/cli": "^1",
     "@types/node": "^20.11.24",

@@ -1,15 +1,24 @@
+:root {
+  --titlebar-height: 36px;
+  --siderbar-width: 50px;
+}
+
 body {
-  --titlebar-height: 30px;
   --titlebar-color: #1e1e1e;
   --titlebar-bg: #f8f8f8;
   --titlebar-hover-bg: #d7d7d7;
+
+  --siderbar-bg: #f8f8f8;
+  --siderbar-hover: #e9e9e9;
 }
 
 body[arco-theme="dark"] {
-  --titlebar-height: 30px;
   --titlebar-color: #9d9d9d;
   --titlebar-bg: #181818;
   --titlebar-hover-bg: #3d3d3d;
+
+  --siderbar-bg: #181818;
+  --siderbar-hover: #e9e9e9;
 }
 
 html {

@@ -1,13 +1,29 @@
+<script lang="ts" setup>
+import Titlebar from './components/Titlebar.vue'
+import Sidebar from './components/Sidebar.vue'
+</script>
+
 <template>
-  <main
+  <a-layout
     text="center gray-700 dark:gray-200"
     mt="[var(--titlebar-height)]"
-    h-full px-4 py-10
+    h-full
   >
-    <RouterView />
-    <TheFooter />
-    <div mx-auto mt-5 text-center text-sm opacity-50>
-      [Default Layout]
-    </div>
-  </main>
+    <!-- header -->
+    <a-layout-header>
+      <Titlebar />
+    </a-layout-header>
+    <!-- main -->
+    <a-layout>
+      <!-- sidebar -->
+      <a-layout-sider :width="50">
+        <Sidebar />
+      </a-layout-sider>
+
+      <!-- content -->
+      <a-layout-content style="padding: 1rem;">
+        <RouterView />
+      </a-layout-content>
+    </a-layout>
+  </a-layout>
 </template>
