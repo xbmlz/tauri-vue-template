@@ -10,7 +10,7 @@ import { appWindow } from '@tauri-apps/api/window'
     <div id="titlebar-maximize" class="titlebar-button" @click="appWindow.toggleMaximize()">
       <div class="i-mdi:window-maximize" />
     </div>
-    <div id="titlebar-close" class="titlebar-button" @click="() => appWindow.close()">
+    <div id="titlebar-close" class="titlebar-button" @click="appWindow.close()">
       <div class="i-mdi:window-close" />
     </div>
   </div>

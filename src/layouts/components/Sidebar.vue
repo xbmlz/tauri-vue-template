@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const router = useRouter()
+
 const activedTabIndex = ref(0)
 
 const menus = computed(() => {
@@ -7,14 +9,27 @@ const menus = computed(() => {
       label: 'menu.home',
       key: 'home',
       class: 'i-carbon-home',
+      path: '/',
+    },
+    {
+      label: 'menu.database',
+      key: 'database',
+      class: 'i-carbon-db2-database',
+      path: '/demo/database',
     },
     {
       label: 'menu.home',
       key: 'database',
-      class: 'i-carbon-db2-database',
+      class: 'i-carbon-connection-signal',
+      path: '/demo/websocket',
     },
   ]
 })
+
+function handleClick(i: number, path: string) {
+  activedTabIndex.value = i
+  router.push(path)
+}
 </script>
 
 <template>
@@ -23,7 +38,7 @@ const menus = computed(() => {
       <div
         class="flex flex-col cursor-pointer items-center justify-center gap-3 rd-md px-3 py-2 hover:bg-[var(--siderbar-hover)]"
         :class="{ 'menu-item-active': activedTabIndex === i }"
-        @click="activedTabIndex = i"
+        @click="handleClick(i, m.path)"
       >
         <div :class="`${m.class} text-xl`" />
       </div>

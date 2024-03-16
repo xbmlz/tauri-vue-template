@@ -4,9 +4,11 @@
     windows_subsystem = "windows"
 )]
 
-use futures_util::StreamExt;
+use futures_util::{SinkExt, StreamExt};
+use log::info;
 use tauri::Manager;
 use tokio::net::{TcpListener, TcpStream};
+use tokio_tungstenite::{accept_async, tungstenite::Result};
 use window_shadows::set_shadow;
 
 // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
@@ -27,15 +29,25 @@ async fn start_server() {
     }
 }
 
-async fn accept_connection(stream: TcpStream) {
-    let ws_stream = tokio_tungstenite::accept_async(stream)
+async fn accept_connection(stream: TcpStream) -> Result<()> {
+    let mut ws_stream = accept_async(stream)
         .await
         .expect("Error during the websocket handshake occurred");
 
-    let (write, read) = ws_stream.split();
-    if let Err(e) = read.forward(write).await {
-        eprintln!("Error: {}", e);
+    while let Some(msg) = ws_stream.next().await {
+        let msg = msg?;
+        if msg.is_text() || msg.is_binary() {
+            info!("Received a message: {}", msg.to_text().unwrap());
+            ws_stream.send(msg).await?;
+        }
     }
+    // let (mut write, read) = ws_stream.split();
+
+    // if let Err(e) = read.forward(write).await {
+    //     eprintln!("Error: {}", e);
+    // }
+
+    Ok(())
 }
 
 fn main() {

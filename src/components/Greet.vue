@@ -12,7 +12,7 @@ async function greet() {
 </script>
 
 <template>
-  <a-space direction="vertical" size="large">
+  <a-space direction="vertical" size="large" fill>
     <h1 class="text-4xl">
       Tauri App
     </h1>
